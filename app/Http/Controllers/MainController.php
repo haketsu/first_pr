@@ -18,6 +18,17 @@ class MainController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'name_surname'=>'required|min:3',
+            'sex'=>'required',
+            'phone_num'=>'required|regex:/\+7([0-9]){10}$/|unique',
+            'address'=>'required',
+            'brand'=>'required',
+            'model'=>'required',
+            'color'=>'required',
+            'car_number'=>'required',
+            'status_flag'=>'required',
+        ]);
         DB::table('clients')->insert([
             'name_surname'=>$request->name_surname,
             'sex'=>$request->sex,
@@ -42,7 +53,12 @@ class MainController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        $request->validate([
+            'name_surname'=>'required|min:3',
+            'sex'=>'required',
+            'phone_num'=>'required|regex:/\+7([0-9]){10}$/|unique',
+            'address'=>'required',
+        ]);
         DB::table('clients')->where('id',$id)->update([
             'name_surname'=>$request->name_surname,
             'sex'=>$request->sex,

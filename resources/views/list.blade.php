@@ -43,9 +43,8 @@
                 success:function(data){
                     op+='<option value="0" selected disabled>Выберите авто</option>';
                     for(var i=0;i<data.length;i++){
-                        op+='<option value="'+data[i].id+'">'+data[i].model+'</option>';
+                        op+='<option value="'+data[i].id+'">'+data[i].car_number+'</option>';
                     }
-
                     div.find('.brand').html(" ");
                     div.find('.brand').append(op);
                 },

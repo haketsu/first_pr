@@ -16,7 +16,7 @@ use App\Http\Controllers\DropdownController;
 |
 */
 
-Route::get('/main', 'App\Http\Controllers\MainController@show_all')->name('main.show_all');
+Route::get('/', 'App\Http\Controllers\MainController@show_all')->name('main.show_all');
 Route::get('/main/create', 'App\Http\Controllers\MainController@create')->name('main.create');
 
 Route::post('/main', 'App\Http\Controllers\MainController@store')->name('main.store');

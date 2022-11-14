@@ -25,6 +25,14 @@ class MainControllerCars extends Controller
 
     public function storeCar(Request $request)
     {
+        $request->validate([
+            'clients_id'=>'required',
+            'brand'=>'required',
+            'model'=>'required',
+            'color'=>'required',
+            'car_number'=>'required|min:6|max:6|unique',
+            'status_flag'=>'required',
+        ]);
         DB::table('cars')->insert([
             'clients_id'=>$request->clients_id,
             'brand'=>$request->brand,
@@ -45,6 +53,14 @@ class MainControllerCars extends Controller
 
 public function updateCar(Request $request, $id)
 {
+    $request->validate([
+        'clients_id'=>'required',
+        'brand'=>'required',
+        'model'=>'required',
+        'color'=>'required',
+        'car_number'=>'required|min:6|max:6|unique',
+        'status_flag'=>'required',
+    ]);
         DB::table('cars')->where('id',$id)->update([
             'clients_id'=>$request->clients_id,
             'brand'=>$request->brand,

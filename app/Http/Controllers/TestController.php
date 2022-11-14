@@ -13,13 +13,12 @@ class TestController extends BaseController
     {
         $clients=Client::all();
         return view('list',compact('clients'));
-
     }
 
     public function findName(Request $request)
     {
-        $data=Car::select('model','id')->where('clients_id',$request->id)->get();
-        return response()->json($data);//then sent this data to ajax success
+        $data=Car::select('brand','model','id','car_number')->where('clients_id',$request->id)->get();
+        return response()->json($data);
     }
 
 }
