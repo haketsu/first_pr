@@ -21,7 +21,7 @@ class MainController extends Controller
         $request->validate([
             'name_surname'=>'required|min:3',
             'sex'=>'required',
-            'phone_num'=>'required|regex:/\+7([0-9]){10}$/|unique',
+            'phone_num'=>'required|unique:clients|regex:/\+7([0-9]){10}$/',
             'address'=>'required',
             'brand'=>'required',
             'model'=>'required',
@@ -56,7 +56,7 @@ class MainController extends Controller
         $request->validate([
             'name_surname'=>'required|min:3',
             'sex'=>'required',
-            'phone_num'=>'required|regex:/\+7([0-9]){10}$/|unique',
+            'phone_num'=>'required|unique:clients|regex:/\+7([0-9]){10}$/',
             'address'=>'required',
         ]);
         DB::table('clients')->where('id',$id)->update([

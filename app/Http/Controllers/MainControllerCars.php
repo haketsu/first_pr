@@ -30,7 +30,7 @@ class MainControllerCars extends Controller
             'brand'=>'required',
             'model'=>'required',
             'color'=>'required',
-            'car_number'=>'required|min:6|max:6|unique',
+            'car_number'=>'required|unique:cars|min:6|max:6',
             'status_flag'=>'required',
         ]);
         DB::table('cars')->insert([
@@ -58,7 +58,7 @@ public function updateCar(Request $request, $id)
         'brand'=>'required',
         'model'=>'required',
         'color'=>'required',
-        'car_number'=>'required|min:6|max:6|unique',
+        'car_number'=>'required|unique:cars|min:6|max:6',
         'status_flag'=>'required',
     ]);
         DB::table('cars')->where('id',$id)->update([
