@@ -5,7 +5,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="name_surname">ФИО</label>
-                    <input type="text" minlength="3" name="name_surname" class="form-control" id="name_surname"  placeholder="Введите имя" required>
+                    <input type="text"  name="name_surname" class="form-control" id="name_surname"  placeholder="Введите имя" required>
                 </div>
                 <div class="form-group">
                     <label for="sex">Пол</label>
@@ -33,7 +33,6 @@
                         <?php
                             foreach ($brandArray as $brand)
                         {
-
                             echo '<option '.$brand.' value="'.$brand.'">'.$brand.'</option>';
                         }
                         ?>

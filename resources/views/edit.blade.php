@@ -10,9 +10,9 @@
             </div>
             <div class="form-group">
                 <label for="sex">Пол</label>
-                <td><input type="radio" name="sex" value="m" required/> Мужчина</td>
+                <td><input @if($client->sex=='m') checked @endif type="radio" name="sex" value="m" required/> Мужчина</td>
                 <tr>
-                    <td><input type="radio" name="sex" value="w" required/> Женщина</td>
+                    <td><input @if($client->sex=='w') checked @endif type="radio" name="sex" value="w" required/> Женщина</td>
                 </tr>
             </div>
             <div class="form-group">

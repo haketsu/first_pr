@@ -7,7 +7,7 @@ use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MainControllerCars extends Controller
+class CarController extends Controller
 {
     public function indexCar()
     {
@@ -25,22 +25,7 @@ class MainControllerCars extends Controller
 
     public function storeCar(Request $request)
     {
-        $request->validate([
-            'clients_id'=>'required',
-            'brand'=>'required',
-            'model'=>'required',
-            'color'=>'required',
-            'car_number'=>'required|unique:cars|min:6|max:6',
-            'status_flag'=>'required',
-        ]);
-        DB::table('cars')->insert([
-            'clients_id'=>$request->clients_id,
-            'brand'=>$request->brand,
-            'model'=>$request->model,
-            'color'=>$request->color,
-            'car_number'=>$request->car_number,
-            'status_flag'=>$request->status_flag,
-        ]);
+        Car::store($request);
         return redirect()->route('main.show_all_cars');
     }
 
@@ -48,33 +33,46 @@ class MainControllerCars extends Controller
     {
         $clients=DB::select('select * from clients');
         $car=DB::table('cars')->find($id);
+
         return view('editcars', compact('car','clients'));
     }
 
-public function updateCar(Request $request, $id)
-{
-    $request->validate([
-        'clients_id'=>'required',
-        'brand'=>'required',
-        'model'=>'required',
-        'color'=>'required',
-        'car_number'=>'required|unique:cars|min:6|max:6',
-        'status_flag'=>'required',
-    ]);
-        DB::table('cars')->where('id',$id)->update([
-            'clients_id'=>$request->clients_id,
-            'brand'=>$request->brand,
-            'model'=>$request->model,
-            'color'=>$request->color,
-            'car_number'=>$request->car_number,
-            'status_flag'=>$request->status_flag,
-        ]);
-    return redirect()->route('main.show_all_cars');
-}
-
-    public function destroyCar($id)
+    public function updateCar(Request $request, $id)
     {
-        DB::table('cars')->where('id',$id)->delete();
+        $request->validate([
+            'clients_id'=>'required',
+            'brand'=>'required',
+            'model'=>'required',
+            'color'=>'required',
+            'car_number'=>'required|min:6|max:6|unique:cars,car_number,'.$id.',id',
+            'status_flag'=>'required',
+    ]);
+
+        $car = Car::find($id);
+        $car->clients_id=$request->clients_id;
+        $car->brand=$request->brand;
+        $car->model=$request->model;
+        $car->color=$request->color;
+        $car->car_number=$request->car_number;
+        $car->status_flag=$request->status_flag;
+        $car->save();
+
+        DB::table('cars')->where('id',$id)->update([
+                'clients_id'=>$request->clients_id,
+                'brand'=>$request->brand,
+                'model'=>$request->model,
+                'color'=>$request->color,
+                'car_number'=>$request->car_number,
+                'status_flag'=>$request->status_flag,
+            ]);
+        return redirect()->route('main.show_all_cars');
+    }
+
+    public function destroyCar($car)
+    {
+        $car = Car::find($car);
+        $car->delete();
+        //DB::table('cars')->where('id',$id)->delete();
         return redirect()->route('main.show_all_cars');
     }
 

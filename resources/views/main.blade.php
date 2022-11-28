@@ -48,11 +48,9 @@
         <div>@yield('list')</div>
    </div>
 </div>
+</nav>
 </body>
 </html>
 <html>
-<head>
-    <title> Pagination </title>
-</head>
 <body>
 

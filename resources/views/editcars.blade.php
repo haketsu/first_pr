@@ -9,13 +9,11 @@
                 <?php
                 $brandArray = array("AUDI", "BENTLEY", "BMW", "CHEVROLET", "INFINITI", "PORSCHE", "TOYOTA");
                 ?>
-
-                <select type="text" name="brand" class="form-control" id="brand">
-                    <option>Выберите марку</option>
+                <select type="text" name="brand" class="form-control" id="brand" required>
+                    <option value="{{$car->brand}}" selected>{{$car->brand}}</option>
                     <?php
                     foreach ($brandArray as $brand)
                     {
-
                         echo '<option '.$brand.' value="'.$brand.'">'.$brand.'</option>';
                     }
                     ?>
@@ -35,17 +33,17 @@
             </div>
             <div class="form-group">
                 <label for="status_flag">Статус</label>
-                <td><input type="radio" name="status_flag" value="1" required/> На парковке</td>
+                <td><input @if($car->status_flag==1) checked @endif type="radio" name="status_flag" value="1" required/> На парковке</td>
                 <tr>
-                    <td><input type="radio" name="status_flag" value="0" required/> Не на парковке</td>
+                    <td><input @if($car->status_flag==0) checked @endif type="radio" name="status_flag" value="0" required/> Не на парковке</td>
                 </tr>
             </div>
             <div class="mb-3">
                 <label for="clients_id">Клиенты</label>
                 <select class="form-select form-select mb-3" id="client" name="clients_id" required>
-                    <option selected disabled>Выберите клиента</option>
+                    <option disabled>Выберите клиента</option>
                     @foreach ($clients as $client)
-                        <option value="{{ $client->id }}">{{ $client->id }}.{{ $client->name_surname }}</option>
+                        <option @if($client->id=$car->clients_id) selected @endif value="{{ $client->id }}">{{ $client->id }}.{{ $client->name_surname }}</option>
                     @endforeach
                 </select>
             </div>

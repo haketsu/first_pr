@@ -7,7 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
-class TestController extends BaseController
+class DropdownController extends BaseController
 {
     public function funct()
     {
