@@ -16,7 +16,7 @@ use App\Http\Controllers\DropdownController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\ClientController@show_all')->name('main.show_all');
+
 Route::get('/create', 'App\Http\Controllers\ClientController@create')->name('main.create');
 
 Route::post('/main', 'App\Http\Controllers\ClientController@store')->name('main.store');
@@ -38,4 +38,4 @@ Route::post('/{car}/delete', 'App\Http\Controllers\CarController@destroyCar')->n
 Route::get('/view','App\Http\Controllers\DropdownController@funct')->name('funct');
 Route::get('/findName','App\Http\Controllers\DropdownController@findName');
 
-
+Route::get('/{page}', 'App\Http\Controllers\ClientController@show_all')->name('main.show_all');

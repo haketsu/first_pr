@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('main.show_all')}}">Клиенты</a>
+                            <a class="nav-link" aria-current="page" href="/1">Клиенты</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{route('main.show_all_carss')}}">Все авто</a>

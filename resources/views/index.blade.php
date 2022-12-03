@@ -36,7 +36,13 @@
             @endforeach
             </tbody>
         </table>
-
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{{$prev}}">Previous</a></li>
+            @for($i = 1; $i <= $btn; $i++)
+                <li class="page-item"><a class="page-link" href="/{{$i}}">{{$i}}</a></li>
+            @endfor
+            <li class="page-item"><a class="page-link" href="{{$next}}">Next</a></li>
+        </ul>
     </div>
 
 @endsection
